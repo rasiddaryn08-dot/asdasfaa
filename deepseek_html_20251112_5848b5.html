@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Жүректен жүрекке — Қайырымдылыққа қосыл</title>
+  <style>
+    /* ваш CSS код остается без изменений */
+    :root{
+      --bg1: #ffecd2;
+      --bg2: #fcb69f;
+      --card: rgba(255,255,255,0.95);
+      --accent: #ff6b6b;
+      --accent-2: #6b9eff;
+      --muted: #556179;
+      --radius: 16px;
+      --glass: rgba(255,255,255,0.6);
+      --shadow: 0 10px 30px rgba(18, 25, 33, 0.12);
+      font-family: Inter, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;background:linear-gradient(135deg,var(--bg1),var(--bg2));-webkit-font-smoothing:antialiased}
+    .wrap{min-height:100%;display:flex;align-items:center;justify-content:center;padding:32px}
+
+    .card{
+      width:980px;
+      max-width:100%;
+      background:var(--card);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      display:grid;
+      grid-template-columns: 420px 1fr;
+      gap:20px;
+      overflow:hidden;
+      transform:translateY(8px);
+      animation:appear .6s ease both;
+    }
+
+    @keyframes appear{from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)}}
+
+    .visual{
+      padding:28px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:18px;
+    }
+
+    .logo{display:flex;gap:12px;align-items:center;margin-bottom:6px;}
+    .brand{font-weight:700;color:var(--accent-2);font-size:20px;}
+    .tag{color:var(--muted);font-size:13px;}
+
+    .art{
+      width:260px;
+      height:260px;
+      border-radius:20px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background: linear-gradient(180deg, rgba(255,255,255,0.8), rgba(255,255,255,0.6));
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      transition: transform .35s cubic-bezier(.2,.9,.3,1);
+    }
+
+    .art:hover{transform:translateY(-6px) scale(1.02)}
+
+    .welcome{text-align:center;padding:0 10px;}
+    .welcome h1{margin:0;font-size:20px;color:#1b2b4a}
+    .welcome p{margin:8px 0 0;color:var(--muted);font-size:14px}
+
+    .panel{padding:28px;display:flex;flex-direction:column;gap:12px;align-items:stretch;justify-content:center}
+    .question{display:flex;flex-direction:column;gap:10px;align-items:flex-start;}
+    .question h2{margin:0;font-size:22px;color:#10203b}
+    .actions{display:flex;gap:12px;margin-top:6px}
+
+    .btn{padding:10px 16px;border-radius:10px;border:none;cursor:pointer;font-weight:700;
+      box-shadow:0 6px 18px rgba(12,20,40,0.06);
+      transition: transform .15s ease, box-shadow .15s ease;}
+    .btn:active{transform:translateY(1px)}
+    .btn-yes{background:linear-gradient(90deg,var(--accent),#ff9b9b);color:white}
+    .btn-no{background:transparent;color:var(--muted);border:1px solid rgba(16,32,64,0.06)}
+
+    .form-card{margin-top:8px;padding:14px;background:linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.82));border-radius:12px}
+    form{display:flex;flex-direction:column;gap:10px}
+    label{font-size:13px;color:#34445a;font-weight:600}
+    input[type="text"], textarea{
+      padding:10px;border-radius:8px;border:1px solid #e6eef8;font-size:14px;
+      outline:none;transition:box-shadow .12s ease, border-color .12s ease;
+      width:100%;
+    }
+    input:focus, textarea:focus{box-shadow:0 6px 18px rgba(43,122,255,0.08);border-color:#66a8ff}
+
+    .submit-row{display:flex;gap:10px;align-items:center;margin-top:8px}
+    .submit-btn{background:linear-gradient(90deg,var(--accent-2),#5fd0ff);color:white;font-weight:800;padding:10px 14px;border-radius:10px;border:none;cursor:pointer}
+    .secondary{background:transparent;border:1px solid rgba(16,32,64,0.06);color:var(--muted);padding:8px 10px;border-radius:10px}
+    .note{color:var(--muted);font-size:12px;margin-top:6px}
+
+    .success{display:flex;flex-direction:column;align-items:center;gap:8px;padding:18px;border-radius:12px;background:linear-gradient(90deg,#effbf9,#fffbe6);
+      color:#0b3f2e;font-weight:700;}
+
+    @media (max-width:880px){
+      .card{grid-template-columns:1fr;padding:18px}
+      .visual{order:2;padding:18px}
+      .panel{order:1}
+      .art{width:200px;height:200px}
+    }
+    .fade-in{animation: fadeIn .45s ease both}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+    .hidden{display:none !important}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <div class="visual">
+        <div class="logo">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
+            <path d="M12 21s-7.5-4.9-9.1-8.1C0.9 9.4 4.5 5 8.4 6.4c1.6.6 2.6 2.3 3.6 3.6 1-1.3 2-3 3.6-3.6C19.5 5 23.1 9.4 21.1 12.9 19.5 16.1 12 21 12 21z" fill="#ff6b6b"/>
+          </svg>
+          <div>
+            <div class="brand">Жүректен жүрекке</div>
+            <div class="tag">Қайырымдылық жоба — бірге көмектесейік</div>
+          </div>
+        </div>
+
+        <div class="art">
+          <svg width="220" height="220" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#ffecd2"/>
+                <stop offset="100%" stop-color="#fcb69f"/>
+              </linearGradient>
+            </defs>
+            <rect rx="16" width="64" height="64" fill="url(#g)"/>
+            <path d="M12 46c0-6 6-12 12-12h8c3 0 6 2 8 4 2 2 3 6 1 8-2 2-6 1-9-1-3-2-7-3-10-3-4 0-10 3-10 3" fill="#ffd2b3"/>
+            <path d="M18 36c1-4 6-6 10-4 0 0-2 3-5 3-3 0-6 1-5 1z" fill="#ffd2b3" opacity="0.95"/>
+            <g transform="translate(15,5)">
+              <path d="M17 14c0-4.4-3.6-8-8-8-2.2 0-4.2.9-5.6 2.4C1.8 9.9 1 11.9 1 14c0 4.4 7 9 15 14 8-5 15-9.6 15-14 0-2.1-.8-4.1-2.4-5.6C25.2 6.9 23.2 6 21 6c-4.4 0-8 3.6-8 8z" fill="#ff6b6b"/>
+            </g>
+          </svg>
+        </div>
+
+        <div class="welcome">
+          <h1>Жүректен жүрекке</h1>
+          <p>Біз біргеміз — кішкентай көмегң үлкен өзгеріс әкеледі. Қосыласың ба?</p>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="question" id="questionBlock">
+          <h2>Қосылғың келе ме?</h2>
+          <div class="actions">
+            <button class="btn btn-yes" id="yesBtn">Иә — Қосыламын</button>
+            <button class="btn btn-no" id="noBtn">Жоқ — Кейін</button>
+          </div>
+          <div class="note">Иә бассаңыз — қысқа форма шығады. Мәліметтер Google Sheets-ке сақталады.</div>
+        </div>
+
+        <div class="form-card hidden fade-in" id="formCard">
+          <h3 style="margin:0 0 6px 0;color:#10304d">Қатысуға өтініш</h3>
+          <form id="joinForm">
+            <label for="name">Атың:</label>
+            <input id="name" name="name" type="text" required>
+            <label for="surname">Тегі:</label>
+            <input id="surname" name="surname" type="text" required>
+            <label for="class_">Сыныбың:</label>
+            <input id="class_" name="class" type="text" required>
+            <label for="goal">Мақсатың:</label>
+            <textarea id="goal" name="goal" rows="3" required></textarea>
+
+            <div class="submit-row">
+              <button type="submit" class="submit-btn">Жіберу</button>
+              <button type="button" id="cancelBtn" class="secondary">Артқа</button>
+            </div>
+            <div id="formMsg" class="note" style="display:none"></div>
+          </form>
+        </div>
+
+        <div id="noBlock" class="hidden fade-in">
+          <div class="success">
+            <div style="font-size:20px">Жарайды 😊</div>
+            <div style="font-size:13px;color:#245d52">Келесі жолы қосылсаңыз күтеміз!</div>
+          </div>
+        </div>
+
+        <div id="sentBlock" class="hidden fade-in">
+          <div class="success">
+            <svg width="36" height="36" viewBox="0 0 24 24">
+              <path d="M12 21s-7.5-4.9-9.1-8.1C0.9 9.4 4.5 5 8.4 6.4c1.6.6 2.6 2.3 3.6 3.6 1-1.3 2-3 3.6-3.6C19.5 5 23.1 9.4 21.1 12.9 19.5 16.1 12 21 12 21z" fill="#0f9d58"/>
+            </svg>
+            <div style="font-weight:800">Рахмет! Өтініміңіз қабылданды.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzQSsk9vunrMS6eHu1EMjr2wyAOGzJxT4DRy0yPEp6r2PRdPPfzG71yzJT_NxNuA8Z88Q/exec";
+
+    const yesBtn = document.getElementById('yesBtn');
+    const noBtn = document.getElementById('noBtn');
+    const formCard = document.getElementById('formCard');
+    const joinForm = document.getElementById('joinForm');
+    const cancelBtn = document.getElementById('cancelBtn');
+    const questionBlock = document.getElementById('questionBlock');
+    const noBlock = document.getElementById('noBlock');
+    const sentBlock = document.getElementById('sentBlock');
+    const formMsg = document.getElementById('formMsg');
+
+    const badWords = ["котак", "ам", "пиз", "сука", "еб", "fuck", "shit", "идиот", "лох", "жынды"];
+
+    function hasBadWords(text) {
+      const t = text.toLowerCase();
+      return badWords.some(b => t.includes(b));
+    }
+
+    yesBtn.onclick = () => {
+      questionBlock.classList.add('hidden');
+      formCard.classList.remove('hidden');
+    };
+
+    noBtn.onclick = () => {
+      questionBlock.classList.add('hidden');
+      noBlock.classList.remove('hidden');
+    };
+
+    cancelBtn.onclick = () => {
+      formCard.classList.add('hidden');
+      questionBlock.classList.remove('hidden');
+    };
+
+    joinForm.onsubmit = async (e) => {
+      e.preventDefault();
+      formMsg.style.display = "none";
+
+      const data = {
+        name: name.value.trim(),
+        surname: surname.value.trim(),
+        class: class_.value.trim(), // исправлено - убрал опциональную цепочку
+        goal: goal.value.trim()
+      };
+
+      if (Object.values(data).some(v => !v)) {
+        formMsg.textContent = "Барлық өрістерді толтырыңыз.";
+        formMsg.style.display = "block";
+        return;
+      }
+
+      if (Object.values(data).some(v => hasBadWords(v))) {
+        formMsg.textContent = "Басқа сөз таңдаңыз — әдепсіз сөздерге рұқсат жоқ.";
+        formMsg.style.display = "block";
+        return;
+      }
+
+      formMsg.textContent = "Жіберілуде...";
+      formMsg.style.display = "block";
+
+      try {
+        const res = await fetch(SCRIPT_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data)
+        });
+
+        if (!res.ok) throw new Error("Сервер қате");
+
+        formCard.classList.add("hidden");
+        sentBlock.classList.remove("hidden");
+        joinForm.reset();
+      } catch (err) {
+        formMsg.textContent = "Қате: Мәлімет сақталмады. Кейінірек көріңіз.";
+        formMsg.style.display = "block";
+      }
+    };
+  </script>
+</body>
+</html>
